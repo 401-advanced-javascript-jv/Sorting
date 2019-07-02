@@ -3,8 +3,8 @@
 /**
  * mergeSort algorithm
  * @param items
- * @param leftBound
- * @param rightBound
+ * @param {number} {leftBound}
+ * @param {number} {rightBound}
  * @returns {Array}
  */
 const mergeSort = (items, leftBound, rightBound) => {
@@ -19,7 +19,7 @@ const mergeSort = (items, leftBound, rightBound) => {
   // Base cases
   // -------------------------------------------------------------------------
   if (length < 2) {
-    return [items[leftBound]]
+    return [items[leftBound]];
   }
 
   if (length === 2) {
@@ -69,7 +69,4 @@ const mergeSort = (items, leftBound, rightBound) => {
   return output;
 };
 
-console.log(mergeSort([5, 6, 3, 9, 3, 4]));
-console.log(mergeSort([2, 1]));
-console.log(mergeSort([5, 9, 2, 1, 5]));
-console.log(mergeSort([3,94,5,7,53,45,345,38,46,36,51,17,90,43,25,67,422,44,514,489,39,405,37,54,76,523,42,342,6,456]));
+module.exports = mergeSort;
