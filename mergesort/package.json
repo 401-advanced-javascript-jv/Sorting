@@ -18,7 +18,8 @@
     "testEnvironment": "node"
   },
   "devDependencies": {
-    "prettier": "latest"
+    "prettier": "latest",
+    "jest": "latest"
   },
   "prettier": {
     "singleQuote": true,
