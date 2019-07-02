@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const _swap = (items, indexA, indexB) => {
   const temp = items[indexA];
@@ -6,19 +6,26 @@ const _swap = (items, indexA, indexB) => {
   items[indexB] = temp;
 };
 
-const _slice = (items, leftIndex, rightIndex) => {
-  const pivotIndex = rightIndex;
-  let firstHighIndex = leftIndex;
+const _sortSlice = (items, leftIndex, rightIndex) => {
+  let equalIndex = leftIndex;
+  let highIndex = rightIndex + 1;
+  const pivot = items[rightIndex];
 
-  for (let i = leftIndex; i < rightIndex; i++) {
-    if (items[i] < items[pivotIndex]) {
-      _swap(items, i, firstHighIndex);
-      firstHighIndex++;
+  let i = leftIndex;
+  while (i < highIndex) {
+    if (items[i] < pivot) {
+      _swap(items, i, equalIndex);
+      equalIndex++;
+      i++;
+    } else if (items[i] > pivot) {
+      _swap(items, i, highIndex - 1);
+      highIndex--;
+    } else {
+      i++;
     }
   }
 
-  _swap(items, pivotIndex, firstHighIndex);
-  return firstHighIndex;
+  return [equalIndex, highIndex];
 };
 
 const _helper = (items, leftIndex, rightIndex) => {
@@ -26,26 +33,18 @@ const _helper = (items, leftIndex, rightIndex) => {
   //   // insertionSort(items);
   // }
   if (rightIndex > leftIndex) {
-    // For now, assume that partition returns the pivot's index
-    const sliceIndex = _slice(items, leftIndex, rightIndex);
+    const [equalIndex, highIndex] = _sortSlice(items, leftIndex, rightIndex);
 
-    _helper(items, leftIndex, sliceIndex - 1);
-    _helper(items, sliceIndex + 1, rightIndex);
+    _helper(items, leftIndex, equalIndex - 1);
+    _helper(items, highIndex, rightIndex);
   }
 };
 
-const quicksort = items => {
+const quicksort = (items) => {
+  if (items.length < 2) {
+    return items;
+  }
   _helper(items, 0, items.length - 1);
 };
 
-let array = [5,9,4,6,8,2,5,7,7,7,2,6,4,1,1,8,2,6,8,2,5,9,2,4,2,6,3,4,7,7,2,7,8];
-quicksort(array);
-console.log(array);
-
-array = [4, 3];
-quicksort(array);
-console.log(array);
-
-array = [9, 8, 7, 13, 6, 20, 6, 2, 9];
-quicksort(array);
-console.log(array);
+module.exports = quicksort;
