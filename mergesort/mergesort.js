@@ -18,6 +18,9 @@ const mergeSort = (items, leftBound, rightBound) => {
   // -------------------------------------------------------------------------
   // Base cases
   // -------------------------------------------------------------------------
+  if (length === 0) {
+    return [];
+  }
   if (length < 2) {
     return [items[leftBound]];
   }
