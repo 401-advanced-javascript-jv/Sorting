@@ -3,8 +3,8 @@
 /**
  * mergeSort algorithm
  * @param items
- * @param {number} {leftBound}
- * @param {number} {rightBound}
+ * @param {number} (leftBound)
+ * @param {number} (rightBound)
  * @returns {Array}
  */
 const mergeSort = (items, leftBound, rightBound) => {
